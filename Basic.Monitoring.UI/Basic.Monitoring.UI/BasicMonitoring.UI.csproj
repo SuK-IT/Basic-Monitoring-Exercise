@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BasicMonitor.Data\BasicMonitor.Data.csproj">
+      <Project>{520cb83c-0d2c-4981-a4bf-cd32ec7a1c22}</Project>
+      <Name>BasicMonitor.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Timers;
+
+using BasicMonitor.Data;
 
 namespace Basic.Monitoring.UI
 {
@@ -20,9 +23,27 @@ namespace Basic.Monitoring.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Timer updateInterface = new Timer(1);
+
         public MainWindow()
         {
             InitializeComponent();
+            updateInterface.Elapsed += UpdateInterface_Elapsed;
+            updateInterface.Start();
+        }
+
+        private void UpdateInterface_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            processCounter.Dispatcher.Invoke(() => {
+
+                processCounter.Content = $"Currently Running Processes: {Processes.GetRunningProcessesCount()}";
+            
+            });
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Currently Running Processes: {Processes.GetRunningProcessesCount()}");
         }
     }
 }

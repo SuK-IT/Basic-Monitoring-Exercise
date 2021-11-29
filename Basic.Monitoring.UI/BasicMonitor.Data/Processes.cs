@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace BasicMonitor.Data
 {
-    class Processes
+    public static class Processes
     {
+        public static Process[] GetRunningProcesses()
+        {
+            return Process.GetProcesses();
+        }
+
+        public static int GetRunningProcessesCount()
+        {
+            return GetRunningProcesses().Length;
+        }
     }
 }
