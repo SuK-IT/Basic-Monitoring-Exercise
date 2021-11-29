@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Basic.Monitoring.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="BasicMonitor" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
         <Button Content="GetProcessCount" Name="button1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="253,177,0,0" Click="Button_Click"/>
         <Label Content="Currently Running Processes: " Name="processCounter" HorizontalAlignment="Left" Margin="119,62,0,0" VerticalAlignment="Top"/>

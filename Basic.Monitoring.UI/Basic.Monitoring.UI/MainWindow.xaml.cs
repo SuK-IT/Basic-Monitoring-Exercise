@@ -23,27 +23,41 @@ namespace Basic.Monitoring.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Timer updateInterface = new Timer(1);
+        private Timer updateInterface = new Timer(100);
 
         public MainWindow()
         {
             InitializeComponent();
             updateInterface.Elapsed += UpdateInterface_Elapsed;
             updateInterface.Start();
+            this.Title = $"BasicMonitor - Monitoring: {OS.GetComputerName()}";
         }
 
         private void UpdateInterface_Elapsed(object sender, ElapsedEventArgs e)
         {
-            processCounter.Dispatcher.Invoke(() => {
+            try
+            {
+                var procCounterQuery = $"Currently Running Processes: {Processes.GetRunningProcessesCount()}";
+                processCounter.Dispatcher.Invoke(() =>
+                {
+                    processCounter.Content = procCounterQuery;
 
-                processCounter.Content = $"Currently Running Processes: {Processes.GetRunningProcessesCount()}";
-            
-            });
+                });
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Currently Running Processes: {Processes.GetRunningProcessesCount()}");
+            MessageBox.Show($"{OS.GetComputerName()}");
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            updateInterface.Stop();
         }
     }
 }

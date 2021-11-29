@@ -20,8 +20,13 @@ namespace BasicMonitor.Data
 
         public static DiskData[] GetAllDisksData()
         {
+
+
+
             throw new NotImplementedException();
         }
+
+        private static List<DiskData> storedDiskData = new List<DiskData>();
     }
 
     public class DiskData
